@@ -1,581 +1,1149 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="YouTube Assistance — Centre d'assistance, conseils et ressources pour les utilisateurs de YouTube.">
+
+    <meta name="theme-color"
+          content="#0f0f0f">
 
     <title>YouTube Assistance</title>
 
-    <style>
-        /* =========================
-           RESET
-        ========================= */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                         Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f6f6f6;
-            color: #161616;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: #ffffff;
-            border-bottom: 2px solid #ff0000;
-            padding: 15px 30px;
-        }
-
-        .header-container {
-            max-width: 1300px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            text-decoration: none;
-            color: #ff0000;
-            font-size: 24px;
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        nav {
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #161616;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #ff0000;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-        .hero {
-            min-height: 500px;
-            background: #ff0000;
-            color: white;
-            padding: 60px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-container {
-            width: 100%;
-            max-width: 1300px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .hero-image {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 15px;
-            background: white;
-            padding: 5px;
-        }
-
-        .hero-text {
-            flex: 1;
-            text-align: center;
-        }
-
-        .hero-text h1 {
-            font-size: 55px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero-text h2 {
-            font-size: 22px;
-            font-weight: 400;
-        }
-
-        /* =========================
-           SECTIONS
-        ========================= */
-        section {
-            padding: 70px 30px;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: #ff0000;
-            font-size: 36px;
-            margin-bottom: 45px;
-        }
-
-        /* =========================
-           SERVICES
-        ========================= */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            border-top: 5px solid #ff0000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: #ff0000;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            margin-bottom: 15px;
-        }
-
-        .card-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 12px 22px;
-            background: #ff0000;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-        }
-
-        .card-button:hover {
-            background: #cc0000;
-        }
-
-        /* =========================
-           ASSISTANCE
-        ========================= */
-        .assistance-box {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .assistance-box h3 {
-            color: #ff0000;
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-        .assistance-box p {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        /* =========================
-           INFORMATIONS
-        ========================= */
-        .info-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .info-item {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-        }
-
-        .info-item h3 {
-            color: #ff0000;
-            margin-bottom: 10px;
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-        .contact {
-            background: #eeeeee;
-        }
-
-        .contact-box {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-        }
-
-        .contact-box h2 {
-            color: #ff0000;
-            margin-bottom: 15px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-        footer {
-            background: #161616;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
-
-        footer strong {
-            color: #ff0000;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-        @media (max-width: 768px) {
-
-            .header-container {
-                flex-direction: column;
-            }
-
-            nav {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero-container {
-                flex-direction: column;
-            }
-
-            .hero-text h1 {
-                font-size: 38px;
-            }
-
-            .hero-image {
-                width: 180px;
-                height: 180px;
-            }
-
-            .services {
-                grid-template-columns: 1fr;
-            }
-
-            .info-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            header {
-                padding: 12px 15px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            section {
-                padding: 50px 15px;
-            }
-
-            .hero {
-                padding: 45px 15px;
-            }
-
-            .hero-text h1 {
-                font-size: 32px;
-            }
-
-            .hero-text h2 {
-                font-size: 18px;
-            }
-        }
-    </style>
+    <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-    <header>
-        <div class="header-container">
+    <!-- =========================================================
+         BARRE SUPÉRIEURE
+    ========================================================== -->
 
-            <a href="#accueil" class="logo">
-                ▶ YouTube Assistance
+    <header class="topbar">
+
+        <div class="topbar-left">
+
+            <button class="menu-button"
+                    id="menuButton"
+                    aria-label="Ouvrir le menu">
+                ☰
+            </button>
+
+            <a href="#accueil"
+               class="brand">
+
+                <span class="brand-icon">
+                    ▶
+                </span>
+
+                <span class="brand-text">
+                    <strong>YouTube</strong>
+                    <small>Assistance</small>
+                </span>
+
             </a>
 
-            <nav>
-                <a href="#accueil">Accueil</a>
-                <a href="#informations">Informations</a>
-                <a href="#assistance">Assistance</a>
-                <a href="#contact">Contact</a>
-            </nav>
+        </div>
+
+
+        <!-- Recherche -->
+
+        <div class="search-container">
+
+            <form class="search-box">
+
+                <input
+                    type="search"
+                    placeholder="Rechercher dans YouTube Assistance..."
+                    aria-label="Rechercher">
+
+                <button type="submit"
+                        aria-label="Rechercher">
+                    🔍
+                </button>
+
+            </form>
+
+            <button class="voice-button"
+                    aria-label="Recherche vocale">
+                🎙️
+            </button>
 
         </div>
+
+
+        <!-- Actions utilisateur -->
+
+        <div class="topbar-actions">
+
+            <button class="create-button">
+                ＋ <span>Créer</span>
+            </button>
+
+            <button class="notification-button"
+                    aria-label="Notifications">
+                🔔
+                <span class="notification-badge">3</span>
+            </button>
+
+            <button class="profile-button"
+                    aria-label="Profil">
+                YA
+            </button>
+
+        </div>
+
     </header>
 
 
-    <!-- =========================
-         ACCUEIL
-    ========================== -->
-    <section class="hero" id="accueil">
+    <!-- =========================================================
+         STRUCTURE PRINCIPALE
+    ========================================================== -->
 
-        <div class="hero-container">
-
-            <!-- Image gauche -->
-            <img src="photo1.jfif"
-                 alt="YouTube Assistance"
-                 class="hero-image">
-
-            <!-- Texte central -->
-            <div class="hero-text">
-
-                <h1>
-                    YOUTUBE<br>
-                    ASSISTANCE
-                </h1>
-
-                <h2>
-                    Assistance et accompagnement
-                    pour les utilisateurs YouTube
-                </h2>
-
-            </div>
-
-            <!-- Image droite -->
-            <img src="C2.jpg"
-                 alt="Assistance YouTube"
-                 class="hero-image">
-
-        </div>
-
-    </section>
+    <div class="page-layout">
 
 
-    <!-- =========================
-         INFORMATIONS
-    ========================== -->
-    <section id="informations">
+        <!-- =====================================================
+             MENU LATÉRAL
+        ====================================================== -->
 
-        <div class="section-container">
+        <aside class="sidebar"
+               id="sidebar">
 
-            <h2 class="section-title">
-                Nos services
-            </h2>
+            <nav class="sidebar-nav">
 
-            <div class="services">
+                <a href="#accueil"
+                   class="sidebar-link active">
 
-                <div class="card">
+                    <span class="sidebar-icon">⌂</span>
+                    <span>Accueil</span>
 
-                    <h3>
-                        🆘 Assistance en ligne
-                    </h3>
-
-                    <p>
-                        Besoin d'aide concernant YouTube ?
-                        Notre assistant est disponible pour
-                        vous accompagner et répondre à vos questions.
-                    </p>
-
-                    <a href="#assistance" class="card-button">
-                        Obtenir de l'aide
-                    </a>
-
-                </div>
+                </a>
 
 
-                <div class="card">
+                <a href="#assistance"
+                   class="sidebar-link">
 
-                    <h3>
-                        ℹ️ Informations
-                    </h3>
+                    <span class="sidebar-icon">💬</span>
+                    <span>Assistance</span>
 
-                    <p>
-                        Retrouvez des informations et des conseils
-                        pour utiliser YouTube dans les meilleures
-                        conditions.
-                    </p>
-
-                    <a href="#contact" class="card-button">
-                        En savoir plus
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+                </a>
 
 
-    <!-- =========================
-         ASSISTANCE
-    ========================== -->
-    <section id="assistance">
+                <a href="#signalement"
+                   class="sidebar-link">
 
-        <div class="section-container">
+                    <span class="sidebar-icon">⚠️</span>
+                    <span>Signalements</span>
 
-            <h2 class="section-title">
-                Assistance YouTube
-            </h2>
+                </a>
 
-            <div class="assistance-box">
 
-                <h3>
-                    💬 Besoin d'aide ?
+                <a href="#conseils"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">💡</span>
+                    <span>Conseils</span>
+
+                </a>
+
+
+                <a href="#guides"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">📚</span>
+                    <span>Guides</span>
+
+                </a>
+
+
+                <div class="sidebar-separator"></div>
+
+
+                <h3 class="sidebar-title">
+                    YouTube Assistance
                 </h3>
 
+
+                <a href="#compte"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">👤</span>
+                    <span>Mon assistance</span>
+
+                </a>
+
+
+                <a href="#historique"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">◷</span>
+                    <span>Historique</span>
+
+                </a>
+
+
+                <a href="#favoris"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">♡</span>
+                    <span>Mes favoris</span>
+
+                </a>
+
+
+                <div class="sidebar-separator"></div>
+
+
+                <h3 class="sidebar-title">
+                    Explorer
+                </h3>
+
+
+                <a href="#securite"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">🛡️</span>
+                    <span>Sécurité</span>
+
+                </a>
+
+
+                <a href="#confidentialite"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">🔐</span>
+                    <span>Confidentialité</span>
+
+                </a>
+
+
+                <a href="#compte"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">⚙️</span>
+                    <span>Compte</span>
+
+                </a>
+
+
+                <a href="#actualites"
+                   class="sidebar-link">
+
+                    <span class="sidebar-icon">📰</span>
+                    <span>Actualités</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
                 <p>
-                    Notre assistant peut vous accompagner
-                    dans vos démarches et répondre à vos
-                    questions.
+                    © 2026 YouTube Assistance
                 </p>
 
-                <br>
+                <a href="#mentions">
+                    Mentions légales
+                </a>
 
-                <p>
-                    <strong>
-                        Le chatbot d'assistance apparaîtra
-                        ici ou en bas à droite de la page.
-                    </strong>
-                </p>
+                <a href="#confidentialite">
+                    Confidentialité
+                </a>
 
             </div>
 
-        </div>
-
-    </section>
+        </aside>
 
 
-    <!-- =========================
-         INFORMATIONS
-    ========================== -->
-    <section>
+        <!-- =====================================================
+             CONTENU
+        ====================================================== -->
 
-        <div class="section-container">
+        <main class="main-content"
+              id="accueil">
 
-            <h2 class="section-title">
-                Centre d'information
-            </h2>
 
-            <div class="info-list">
+            <!-- =================================================
+                 CATÉGORIES
+            ================================================== -->
 
-                <div class="info-item">
-                    <h3>🔐 Sécurité</h3>
-                    <p>
-                        Conseils pour protéger votre compte
-                        et vos informations.
-                    </p>
-                </div>
+            <div class="category-bar">
 
-                <div class="info-item">
-                    <h3>📺 YouTube</h3>
-                    <p>
-                        Informations et aide concernant
-                        l'utilisation de la plateforme.
-                    </p>
-                </div>
+                <a href="#accueil"
+                   class="category active">
+                    Tous
+                </a>
 
-                <div class="info-item">
-                    <h3>💬 Assistance</h3>
-                    <p>
-                        Posez vos questions directement
-                        à notre assistant.
-                    </p>
-                </div>
+                <a href="#assistance"
+                   class="category">
+                    Assistance
+                </a>
+
+                <a href="#securite"
+                   class="category">
+                    Sécurité
+                </a>
+
+                <a href="#conseils"
+                   class="category">
+                    Conseils
+                </a>
+
+                <a href="#guides"
+                   class="category">
+                    Guides
+                </a>
+
+                <a href="#signalement"
+                   class="category">
+                    Signalements
+                </a>
+
+                <a href="#compte"
+                   class="category">
+                    Compte
+                </a>
+
+                <a href="#confidentialite"
+                   class="category">
+                    Confidentialité
+                </a>
+
+                <a href="#actualites"
+                   class="category">
+                    Actualités
+                </a>
+
+                <a href="#support"
+                   class="category">
+                    Support
+                </a>
 
             </div>
 
-        </div>
 
-    </section>
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+
+            <section class="hero"
+                     id="assistance">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        CENTRE D'ASSISTANCE
+                    </span>
+
+                    <h1>
+                        Besoin d'aide<br>
+                        avec YouTube ?
+                    </h1>
+
+                    <p>
+                        Trouvez rapidement des réponses,
+                        des conseils et une assistance
+                        adaptée à votre situation.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#contact"
+                           class="primary-button">
+
+                            💬
+                            Démarrer une discussion
+
+                        </a>
+
+                        <a href="#guides"
+                           class="secondary-button">
+
+                            Explorer les guides
+                            →
+
+                        </a>
+
+                    </div>
+
+                </div>
 
 
-    <!-- =========================
-         CONTACT
-    ========================== -->
-    <section class="contact" id="contact">
+                <div class="hero-visual">
 
-        <div class="contact-box">
+                    <div class="hero-glow"></div>
 
-            <h2>
-                Contact
-            </h2>
+                    <div class="hero-device">
 
-            <p>
-                Une question ou un problème ?
-                Utilisez notre espace d'assistance
-                pour obtenir de l'aide.
-            </p>
+                        <div class="device-screen">
 
-        </div>
+                            <div class="device-play">
+                                ▶
+                            </div>
 
-    </section>
+                            <div class="device-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="floating-card card-one">
+                        🔐 Sécurité
+                    </div>
+
+                    <div class="floating-card card-two">
+                        💬 Assistance
+                    </div>
+
+                    <div class="floating-card card-three">
+                        ✓ Résolution
+                    </div>
+
+                </div>
+
+            </section>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer>
+            <!-- =================================================
+                 SECTION VIDÉOS / SERVICES
+            ================================================== -->
 
-        <p>
-            © 2026 <strong>YouTube Assistance</strong>
-        </p>
+            <section class="content-section"
+                     id="conseils">
 
-        <p>
-            Plateforme d'assistance et d'information
-        </p>
+                <div class="section-header">
 
-    </footer>
+                    <div>
+
+                        <span class="section-label">
+                            À LA UNE
+                        </span>
+
+                        <h2>
+                            Conseils et assistance
+                        </h2>
+
+                    </div>
+
+                    <a href="#guides"
+                       class="see-all">
+                        Tout afficher →
+                    </a>
+
+                </div>
 
 
-    <!-- =========================
+                <div class="video-grid">
+
+
+                    <!-- Carte 1 -->
+
+                    <article class="video-card">
+
+                        <a href="#guides"
+                           class="thumbnail thumbnail-one">
+
+                            <span class="thumbnail-badge">
+                                GUIDE
+                            </span>
+
+                            <strong>
+                                SÉCURITÉ<br>
+                                DU COMPTE
+                            </strong>
+
+                            <span class="duration">
+                                08:42
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Comment sécuriser son compte YouTube ?
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    15 k vues • il y a 2 jours
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Carte 2 -->
+
+                    <article class="video-card">
+
+                        <a href="#securite"
+                           class="thumbnail thumbnail-two">
+
+                            <span class="thumbnail-badge">
+                                SÉCURITÉ
+                            </span>
+
+                            <strong>
+                                ATTENTION<br>
+                                AUX ARNAQUES
+                            </strong>
+
+                            <span class="duration">
+                                10:15
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Comment reconnaître une tentative d'arnaque ?
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    8,5 k vues • il y a 4 jours
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Carte 3 -->
+
+                    <article class="video-card">
+
+                        <a href="#confidentialite"
+                           class="thumbnail thumbnail-three">
+
+                            <span class="thumbnail-badge">
+                                CONSEIL
+                            </span>
+
+                            <strong>
+                                PROTÉGER<br>
+                                SES DONNÉES
+                            </strong>
+
+                            <span class="duration">
+                                06:31
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Protéger ses données personnelles
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    5,2 k vues • il y a 1 semaine
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Carte 4 -->
+
+                    <article class="video-card">
+
+                        <a href="#signalement"
+                           class="thumbnail thumbnail-four">
+
+                            <span class="thumbnail-badge">
+                                ALERTE
+                            </span>
+
+                            <strong>
+                                SIGNALEMENT<br>
+                                D'UN PROBLÈME
+                            </strong>
+
+                            <span class="duration">
+                                09:27
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Que faire lorsqu'un problème survient ?
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    12 k vues • il y a 1 semaine
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Carte 5 -->
+
+                    <article class="video-card">
+
+                        <a href="#compte"
+                           class="thumbnail thumbnail-five">
+
+                            <span class="thumbnail-badge">
+                                COMPTE
+                            </span>
+
+                            <strong>
+                                MOT DE PASSE<br>
+                                ET CONNEXION
+                            </strong>
+
+                            <span class="duration">
+                                07:05
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Problème de connexion à votre compte ?
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    4,8 k vues • il y a 2 semaines
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Carte 6 -->
+
+                    <article class="video-card">
+
+                        <a href="#confidentialite"
+                           class="thumbnail thumbnail-six">
+
+                            <span class="thumbnail-badge">
+                                PRIVÉ
+                            </span>
+
+                            <strong>
+                                CONFIDENTIALITÉ<br>
+                                ET VIE PRIVÉE
+                            </strong>
+
+                            <span class="duration">
+                                11:20
+                            </span>
+
+                        </a>
+
+                        <div class="video-info">
+
+                            <div class="channel-avatar">
+                                Y
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Comprendre les paramètres de confidentialité
+                                </h3>
+
+                                <p>
+                                    YouTube Assistance ✓
+                                </p>
+
+                                <span>
+                                    3,1 k vues • hier
+                                </span>
+
+                            </div>
+
+                            <button class="more-button">
+                                ⋮
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ASSISTANCE RAPIDE
+            ================================================== -->
+
+            <section class="quick-help"
+                     id="support">
+
+                <div>
+
+                    <span class="section-label">
+                        ASSISTANCE RAPIDE
+                    </span>
+
+                    <h2>
+                        Vous ne trouvez pas la réponse ?
+                    </h2>
+
+                    <p>
+                        Notre équipe peut vous aider directement.
+                    </p>
+
+                </div>
+
+                <a href="#contact"
+                   class="primary-button">
+
+                    💬 Contacter l'assistance
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 GUIDES
+            ================================================== -->
+
+            <section class="content-section"
+                     id="guides">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            RESSOURCES
+                        </span>
+
+                        <h2>
+                            Guides populaires
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="guide-grid">
+
+                    <a href="#securite"
+                       class="guide-card">
+
+                        <span>🛡️</span>
+
+                        <div>
+                            <h3>
+                                Sécurité
+                            </h3>
+
+                            <p>
+                                Protégez votre compte
+                                et vos informations.
+                            </p>
+                        </div>
+
+                        <b>→</b>
+
+                    </a>
+
+
+                    <a href="#compte"
+                       class="guide-card">
+
+                        <span>👤</span>
+
+                        <div>
+                            <h3>
+                                Compte
+                            </h3>
+
+                            <p>
+                                Connexion, mot de passe
+                                et récupération.
+                            </p>
+                        </div>
+
+                        <b>→</b>
+
+                    </a>
+
+
+                    <a href="#confidentialite"
+                       class="guide-card">
+
+                        <span>🔐</span>
+
+                        <div>
+                            <h3>
+                                Confidentialité
+                            </h3>
+
+                            <p>
+                                Gérez vos paramètres
+                                de confidentialité.
+                            </p>
+                        </div>
+
+                        <b>→</b>
+
+                    </a>
+
+
+                    <a href="#signalement"
+                       class="guide-card">
+
+                        <span>⚠️</span>
+
+                        <div>
+                            <h3>
+                                Signalement
+                            </h3>
+
+                            <p>
+                                Signalez un contenu
+                                ou un problème.
+                            </p>
+                        </div>
+
+                        <b>→</b>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECTIONS INFORMATION
+            ================================================== -->
+
+            <section class="information-section"
+                     id="securite">
+
+                <div class="information-icon">
+                    🛡️
+                </div>
+
+                <div>
+                    <h2>
+                        Votre sécurité avant tout
+                    </h2>
+
+                    <p>
+                        Retrouvez ici les informations et
+                        conseils essentiels pour protéger
+                        votre compte et vos données.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <section class="information-section"
+                     id="signalement">
+
+                <div class="information-icon">
+                    ⚠️
+                </div>
+
+                <div>
+                    <h2>
+                        Signaler un problème
+                    </h2>
+
+                    <p>
+                        Vous rencontrez un problème ?
+                        Utilisez notre assistance pour
+                        obtenir de l'aide.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <section class="information-section"
+                     id="confidentialite">
+
+                <div class="information-icon">
+                    🔐
+                </div>
+
+                <div>
+                    <h2>
+                        Confidentialité
+                    </h2>
+
+                    <p>
+                        Découvrez nos conseils pour mieux
+                        contrôler vos informations et
+                        paramètres de confidentialité.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <section class="contact-section"
+                     id="contact">
+
+                <div>
+
+                    <span class="section-label">
+                        BESOIN D'AIDE ?
+                    </span>
+
+                    <h2>
+                        Démarrer une conversation
+                    </h2>
+
+                    <p>
+                        Notre espace de discussion vous permettra
+                        d'échanger avec l'assistance.
+                    </p>
+
+                </div>
+
+                <button class="contact-button">
+                    💬 Ouvrir le chat
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="footer">
+
+                <div class="footer-top">
+
+                    <div class="footer-brand">
+
+                        <div class="brand">
+                            <span class="brand-icon">
+                                ▶
+                            </span>
+
+                            <span class="brand-text">
+                                <strong>YouTube</strong>
+                                <small>Assistance</small>
+                            </span>
+                        </div>
+
+                        <p>
+                            Centre d'assistance et de ressources.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Assistance
+                        </h3>
+
+                        <a href="#assistance">
+                            Assistance en ligne
+                        </a>
+
+                        <a href="#signalement">
+                            Signaler un problème
+                        </a>
+
+                        <a href="#guides">
+                            Guides
+                        </a>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Ressources
+                        </h3>
+
+                        <a href="#conseils">
+                            Conseils
+                        </a>
+
+                        <a href="#securite">
+                            Sécurité
+                        </a>
+
+                        <a href="#confidentialite">
+                            Confidentialité
+                        </a>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Informations
+                        </h3>
+
+                        <a href="#apropos">
+                            À propos
+                        </a>
+
+                        <a href="#mentions">
+                            Mentions légales
+                        </a>
+
+                        <a href="#confidentialite">
+                            Politique de confidentialité
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="footer-bottom">
+
+                    <span>
+                        © 2026 YouTube Assistance
+                    </span>
+
+                    <span>
+                        Protection • Prévention • Assistance
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================================
          TAWK.TO
-         Le code du chatbot sera ajouté
-         ici plus tard.
-    ========================== -->
+         
+         IMPORTANT :
+         Nous ajouterons ici ton véritable code Tawk.to
+         lorsque le site sera prêt.
+    ========================================================== -->
+
+    <!--
+    CODE TAWK.TO ICI
+    -->
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
