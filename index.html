@@ -1,0 +1,581 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Assistance</title>
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f6f6f6;
+            color: #161616;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            border-bottom: 2px solid #ff0000;
+            padding: 15px 30px;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #ff0000;
+            font-size: 24px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #161616;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff0000;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+        .hero {
+            min-height: 500px;
+            background: #ff0000;
+            color: white;
+            padding: 60px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            background: white;
+            padding: 5px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 55px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h2 {
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+        section {
+            padding: 70px 30px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #ff0000;
+            font-size: 36px;
+            margin-bottom: 45px;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            border-top: 5px solid #ff0000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #ff0000;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        .card-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 22px;
+            background: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .card-button:hover {
+            background: #cc0000;
+        }
+
+        /* =========================
+           ASSISTANCE
+        ========================= */
+        .assistance-box {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .assistance-box h3 {
+            color: #ff0000;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .assistance-box p {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* =========================
+           INFORMATIONS
+        ========================= */
+        .info-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .info-item h3 {
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+        .contact {
+            background: #eeeeee;
+        }
+
+        .contact-box {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .contact-box h2 {
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            background: #161616;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer strong {
+            color: #ff0000;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+        @media (max-width: 768px) {
+
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-container {
+                flex-direction: column;
+            }
+
+            .hero-text h1 {
+                font-size: 38px;
+            }
+
+            .hero-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            header {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .hero {
+                padding: 45px 15px;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header>
+        <div class="header-container">
+
+            <a href="#accueil" class="logo">
+                ▶ YouTube Assistance
+            </a>
+
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#informations">Informations</a>
+                <a href="#assistance">Assistance</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         ACCUEIL
+    ========================== -->
+    <section class="hero" id="accueil">
+
+        <div class="hero-container">
+
+            <!-- Image gauche -->
+            <img src="photo1.jfif"
+                 alt="YouTube Assistance"
+                 class="hero-image">
+
+            <!-- Texte central -->
+            <div class="hero-text">
+
+                <h1>
+                    YOUTUBE<br>
+                    ASSISTANCE
+                </h1>
+
+                <h2>
+                    Assistance et accompagnement
+                    pour les utilisateurs YouTube
+                </h2>
+
+            </div>
+
+            <!-- Image droite -->
+            <img src="C2.jpg"
+                 alt="Assistance YouTube"
+                 class="hero-image">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INFORMATIONS
+    ========================== -->
+    <section id="informations">
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                Nos services
+            </h2>
+
+            <div class="services">
+
+                <div class="card">
+
+                    <h3>
+                        🆘 Assistance en ligne
+                    </h3>
+
+                    <p>
+                        Besoin d'aide concernant YouTube ?
+                        Notre assistant est disponible pour
+                        vous accompagner et répondre à vos questions.
+                    </p>
+
+                    <a href="#assistance" class="card-button">
+                        Obtenir de l'aide
+                    </a>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        ℹ️ Informations
+                    </h3>
+
+                    <p>
+                        Retrouvez des informations et des conseils
+                        pour utiliser YouTube dans les meilleures
+                        conditions.
+                    </p>
+
+                    <a href="#contact" class="card-button">
+                        En savoir plus
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ASSISTANCE
+    ========================== -->
+    <section id="assistance">
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                Assistance YouTube
+            </h2>
+
+            <div class="assistance-box">
+
+                <h3>
+                    💬 Besoin d'aide ?
+                </h3>
+
+                <p>
+                    Notre assistant peut vous accompagner
+                    dans vos démarches et répondre à vos
+                    questions.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>
+                        Le chatbot d'assistance apparaîtra
+                        ici ou en bas à droite de la page.
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         INFORMATIONS
+    ========================== -->
+    <section>
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                Centre d'information
+            </h2>
+
+            <div class="info-list">
+
+                <div class="info-item">
+                    <h3>🔐 Sécurité</h3>
+                    <p>
+                        Conseils pour protéger votre compte
+                        et vos informations.
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📺 YouTube</h3>
+                    <p>
+                        Informations et aide concernant
+                        l'utilisation de la plateforme.
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>💬 Assistance</h3>
+                    <p>
+                        Posez vos questions directement
+                        à notre assistant.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+    <section class="contact" id="contact">
+
+        <div class="contact-box">
+
+            <h2>
+                Contact
+            </h2>
+
+            <p>
+                Une question ou un problème ?
+                Utilisez notre espace d'assistance
+                pour obtenir de l'aide.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+
+        <p>
+            © 2026 <strong>YouTube Assistance</strong>
+        </p>
+
+        <p>
+            Plateforme d'assistance et d'information
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         TAWK.TO
+         Le code du chatbot sera ajouté
+         ici plus tard.
+    ========================== -->
+
+</body>
+</html>
